@@ -4,6 +4,8 @@
 
 #include "../../include/Game/ship.h"
 
+
+
 int can_place_ship(Board * board, int row, int col, int size, int direction)
 {
     int i;
@@ -131,4 +133,21 @@ void place_ship(Board* board, int row, int col, int size, int direction)
 
 int place_ships_randomly(Board* board)
 {
+    int i;
+    int row, col, direction;
+
+    for (i=0; i < NB_PORTE_AVIONS;)
+    {
+        row = rand() % board->size;
+        col = rand() % board->size;
+        direction = rand() % 4;
+
+        if (can_place_ship(board, row, col, SIZE_PORTE_AVIONS, direction))
+        {
+            place_ship(board, row, col, SIZE_PORTE_AVIONS, direction);
+            ++i;
+        }
+    }
+
+    return 1;
 }
