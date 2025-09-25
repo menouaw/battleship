@@ -149,5 +149,44 @@ int place_ships_randomly(Board* board)
         }
     }
 
+    for (i=0; i < NB_CROISEUR;)
+    {
+        row = rand() % board->size;
+        col = rand() % board->size;
+        direction = rand() % 4;
+
+        if (can_place_ship(board, row, col, SIZE_CROISEUR, direction))
+        {
+            place_ship(board, row, col, SIZE_CROISEUR, direction);
+            ++i;
+        }
+    }
+
+    for (i=0; i < NB_DESTROYER;)
+    {
+        row = rand() % board->size;
+        col = rand() % board->size;
+        direction = rand() % 4;
+
+        if (can_place_ship(board, row, col, SIZE_DESTROYER, direction))
+        {
+            place_ship(board, row, col, SIZE_DESTROYER, direction);
+            ++i;
+        }
+    }
+
+    for (i=0; i < NB_TORPILLEUR;)
+    {
+        row = rand() % board->size;
+        col = rand() % board->size;
+        direction = rand() % 4;
+
+        if (can_place_ship(board, row, col, NB_TORPILLEUR, direction))
+        {
+            place_ship(board, row, col, NB_TORPILLEUR, direction);
+            ++i;
+        }
+    }
+
     return 1;
 }
