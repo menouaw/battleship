@@ -15,7 +15,7 @@ void allocate_board(Board * board)
     {
         board->board[i] = malloc(sizeof(char) * board->size);
 
-        for (int j = 0; j < board->size+1; ++j)
+        for (int j = 0; j < board->size; ++j)
         {
             board->board[i][j] = '.';
         }
@@ -28,16 +28,16 @@ void print_board(const Board * board)
     int j = 0;
 
     // en-tête
-    for (i=0; i < board->size+1; ++i)
+    for (i=0; i < board->size; ++i)
     {
         if (i==0)
         {
-            printf("%3c", 'X');
+            printf("%3c ", 'X');
         }
 
         printf("%3c ", 65+i);
 
-        if (i==board->size)
+        if (i==board->size-1)
         {
             printf("\n");
         }
@@ -45,9 +45,9 @@ void print_board(const Board * board)
 
     for (i=0; i < board->size; ++i)
     {
-        printf("%2d ", i+1);
+        printf("%3d ", i+1);
 
-        for (j=0; j < board->size+1; ++j)
+        for (j=0; j < board->size; ++j)
         {
             printf("%3c ", board->board[i][j]);
         }
