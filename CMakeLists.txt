@@ -3,4 +3,6 @@ project(battleship C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(battleship main.c)
+add_executable(battleship src/main.c
+        include/Game/map.h
+        src/Game/map.c)
