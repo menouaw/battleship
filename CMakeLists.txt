@@ -7,4 +7,6 @@ add_executable(battleship src/main.c
         include/Game/map.h
         src/Game/map.c
         include/DataStructures/bases.h
-        src/DataStructures/bases.c)
+        src/DataStructures/bases.c
+        src/Game/ship.c
+        include/Game/ship.h)
