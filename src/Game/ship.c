@@ -89,6 +89,44 @@ int can_place_ship(Board * board, int row, int col, int size, int direction)
 
 void place_ship(Board* board, int row, int col, int size, int direction)
 {
+    int i;
+
+    //est
+    if (direction==0)
+    {
+        for (i = 0; i < size; ++i)
+        {
+            board->board[row][col+i]=(char)(size + 48);
+        }
+    }
+
+    //sud
+    if (direction==1)
+    {
+        for (i = 0; i < size; ++i)
+        {
+            board->board[row+i][col]=(char)(size + 48);
+        }
+    }
+
+    //ouest
+    if (direction==2)
+    {
+        for (i = 0; i < size; ++i)
+        {
+            board->board[row][col-i]=(char)(size + 48);
+        }
+    }
+
+    //nord
+    if (direction==3)
+    {
+        for (i = 0; i < size; ++i)
+        {
+            board->board[row-i][col]=(char)(size + 48);
+        }
+    }
+
 }
 
 int place_ships_randomly(Board* board)
