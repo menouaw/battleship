@@ -20,6 +20,7 @@ typedef struct Player
 {
     int id;
     Board board;
+    Board opponent_board;
 } Player;
 
 #endif //BATTLESHIP_BASES_H

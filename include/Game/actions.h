@@ -8,6 +8,6 @@
 
 Position get_player_input(Player * player, int col, int row);
 
-void attack(Board * opponentBoard, Position position);
+void attack(Board * opponent_board, Position position);
 
 #endif //BATTLESHIP_ACTIONS_H

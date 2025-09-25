@@ -2,7 +2,7 @@
 // Created by menou on 25/09/2025.
 //
 
-#include "../../include/Game/map.h"
+#include "../../include/Game/board.h"
 
 #include <stdio.h>
 #include <stdlib.h>

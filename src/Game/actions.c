@@ -3,7 +3,7 @@
 //
 #include <stdio.h>
 
-#include "../../include/Game/map.h"
+#include "../../include/Game/board.h"
 
 Position get_player_input(Player * player)
 {

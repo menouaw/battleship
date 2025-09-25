@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "../include/Game/map.h"
+#include "../include/Game/board.h"
 #include "../include/Game/ship.h"
 #include "../include/DataStructures/bases.h"
 
@@ -28,20 +28,22 @@ int main(int argc, char * argv[])
     Player * p1 = malloc(sizeof(Player));
     p1->id=0;
     p1->board.size = BOARD_SIZE;
-    
+
     Player * p2 = malloc(sizeof(Player));
     p2->id=1;
     p2->board.size = BOARD_SIZE;
 
     allocate_board(&(p1->board));
+    allocate_board(&(p1->opponent_board));
     allocate_board(&(p2->board));
+    allocate_board(&(p2->opponent_board));
 
     switch (choice)
     {
     case 1:
         place_ships_randomly(&(p1->board));
         place_ships_randomly(&(p2->board));
-        launch_game();
+        // TODO: launch_game();
         break;
     case 2:
         // TODO: cas d'ajout de navires manuellement
@@ -52,8 +54,12 @@ int main(int argc, char * argv[])
     print_board(&(p1->board));
 
     free_board(&(p1->board));
+    free_board(&(p1->opponent_board));
     free(p1);
 
+    free_board(&(p2->board));
+    free_board(&(p2->opponent_board));
+    free(p2);
 
     exit(EXIT_SUCCESS);
 }
