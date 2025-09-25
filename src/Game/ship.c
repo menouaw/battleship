@@ -181,9 +181,9 @@ int place_ships_randomly(Board* board)
         col = rand() % board->size;
         direction = rand() % 4;
 
-        if (can_place_ship(board, row, col, NB_TORPILLEUR, direction))
+        if (can_place_ship(board, row, col, SIZE_TORPILLEUR, direction))
         {
-            place_ship(board, row, col, NB_TORPILLEUR, direction);
+            place_ship(board, row, col, SIZE_TORPILLEUR, direction);
             ++i;
         }
     }

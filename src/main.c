@@ -11,25 +11,49 @@
 int main(int argc, char * argv[])
 {
     srand((unsigned int)time(NULL));
+
+    int choice;
     int row, col, size, direction;
+
+    printf("Souhaitez-vous placer vos bateaux manuellement ou automatiquement?\n");
+    printf("1. Automatiquement.\n");
+    printf("2. Manuellement.\n");
+    printf("\n");
+
+    // scanf("%d", &choice);
+    choice=1; // pour faciliter
 
     // scanf("%d %d %d %d", &row, &col, &size, &direction);
 
-    Board * board_player1 = malloc(sizeof(Board));
-    board_player1->size=BOARD_SIZE;
+    Player * p1 = malloc(sizeof(Player));
+    p1->id=0;
+    p1->board.size = BOARD_SIZE;
+    
+    Player * p2 = malloc(sizeof(Player));
+    p2->id=1;
+    p2->board.size = BOARD_SIZE;
 
-    allocate_board(board_player1);
+    allocate_board(&(p1->board));
+    allocate_board(&(p2->board));
 
-    // if (can_place_ship(board_player1, row, col, size, direction))
-    // {
-    //     place_ship(board_player1, row, col, size, direction);
-    // }
+    switch (choice)
+    {
+    case 1:
+        place_ships_randomly(&(p1->board));
+        place_ships_randomly(&(p2->board));
+        launch_game();
+        break;
+    case 2:
+        // TODO: cas d'ajout de navires manuellement
+    default:
+        printf("Saisie incorrecte.");
+    }
 
-    place_ships_randomly(board_player1);
+    print_board(&(p1->board));
 
-    print_board(board_player1);
+    free_board(&(p1->board));
+    free(p1);
 
-    free_board(board_player1);
 
     exit(EXIT_SUCCESS);
 }

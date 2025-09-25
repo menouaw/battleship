@@ -11,4 +11,15 @@ typedef struct Board
     char ** board;
 } Board;
 
+typedef struct Position
+{
+    int row, col;
+} Position;
+
+typedef struct Player
+{
+    int id;
+    Board board;
+} Player;
+
 #endif //BATTLESHIP_BASES_H

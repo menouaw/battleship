@@ -57,5 +57,10 @@ void print_board(const Board * board)
 
 void free_board(Board * board)
 {
-    free(board);
+    for (int i = 0; i < board->size; ++i)
+    {
+        free(board->board[i]);
+    }
+
+    free(board->board);
 }
