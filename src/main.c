@@ -55,10 +55,13 @@ int main(int argc, char * argv[])
         break;
     case 2:
         place_ships_manually(&(p1->board));
+        place_ships_manually(&(p2->board));
         winner = launch_game(p1, p2);
         printf("Victoire du joueur: %d\n", winner);
+        break;
     default:
         printf("Saisie incorrecte.");
+        break;
     }
 
     free_board(&(p1->board));
