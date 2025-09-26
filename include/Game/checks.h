@@ -6,9 +6,6 @@
 #ifndef BATTLESHIP_CHECKS_H
 #define BATTLESHIP_CHECKS_H
 
-int hit_or_miss(Position position, Board * opponent_board)
-{
-
-}
+int hit_or_miss(Position position, Board * opponent_board, Board * own_opponent_board);
 
 #endif //BATTLESHIP_CHECKS_H
