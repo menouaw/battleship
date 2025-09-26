@@ -4,7 +4,9 @@
 
 #include "../../include/Game/ship.h"
 
+#include <stdio.h>
 
+#include "../../include/Game/board.h"
 
 int can_place_ship(Board * board, int row, int col, int size, int direction)
 {
@@ -93,45 +95,129 @@ void place_ship(Board* board, int row, int col, int size, int direction)
 {
     int i;
 
-    //est
-    if (direction==0)
+    if (can_place_ship(board, row, col, size, direction))
     {
-        for (i = 0; i < size; ++i)
+        if (direction == 0)
         {
-            board->board[row][col+i]=(char)(size + 48);
+            for (i = 0; i < size; ++i)
+            {
+                board->board[row][col+i] = (char)(size + 48);
+            }
+        }
+        else if (direction == 1)
+        {
+            for (i = 0; i < size; ++i)
+            {
+                board->board[row+i][col] = (char)(size + 48);
+            }
+        }
+        else if (direction == 2)
+        {
+            for (i = 0; i < size; ++i)
+            {
+                board->board[row][col-i] = (char)(size + 48);
+            }
+        }
+        else if (direction == 3)
+        {
+            for (i = 0; i < size; ++i)
+            {
+                board->board[row-i][col] = (char)(size + 48);
+            }
         }
     }
-
-    //sud
-    if (direction==1)
+    else
     {
-        for (i = 0; i < size; ++i)
-        {
-            board->board[row+i][col]=(char)(size + 48);
-        }
+        printf("Dimensions incorrectes.\n");
     }
-
-    //ouest
-    if (direction==2)
-    {
-        for (i = 0; i < size; ++i)
-        {
-            board->board[row][col-i]=(char)(size + 48);
-        }
-    }
-
-    //nord
-    if (direction==3)
-    {
-        for (i = 0; i < size; ++i)
-        {
-            board->board[row-i][col]=(char)(size + 48);
-        }
-    }
-
 }
 
-int place_ships_randomly(Board* board)
+
+int place_ships_manually(Board * board)
+{
+    int i;
+    int row, col, direction;
+    int bool;
+
+    printf("Guide de direction:\n"
+           "0: vers la droite,\n"
+           "1: vers le bas,\n"
+           "2: vers la gauche,\n"
+           "3: vers le haut.\n");
+
+    for (i = 0; i < NB_PORTE_AVIONS; ++i)
+    {
+        do
+        {
+            bool = 0;
+            printf("Saisissez les coordonn%ces et la direction de votre porte-avions n%c%d sur %d (longueur: %d)\n", 130, 167, i+1, NB_PORTE_AVIONS, SIZE_PORTE_AVIONS);
+            printf("Format: <ligne>,<colonne>,<direction>. Exemple: 2,1,0\n");
+            scanf("%d,%d,%d,%d", &row, &col, &direction);
+            bool = can_place_ship(board, row, col, SIZE_PORTE_AVIONS, direction);
+
+            if (bool)
+            {
+                place_ship(board, row, col, SIZE_PORTE_AVIONS, direction);
+                print_board(board);
+            }
+        } while (bool==0);
+    }
+
+    for (i = 0; i < NB_CROISEUR; ++i)
+    {
+        do
+        {
+            bool = 0;
+            printf("Saisissez les coordonn%ces et la direction de votre croiseur n%c%d sur %d (longueur: %d)\n", 130, 167, i+1, NB_CROISEUR, SIZE_CROISEUR);
+            scanf("%d,%d,%d,%d", &row, &col, &direction);
+            bool = can_place_ship(board, row, col, SIZE_CROISEUR, direction);
+
+            if (bool)
+            {
+                place_ship(board, row, col, SIZE_CROISEUR, direction);
+                print_board(board);
+            }
+        } while (bool==0);
+    }
+
+    for (i = 0; i < NB_DESTROYER; ++i)
+    {
+        do
+        {
+            bool = 0;
+            printf("Saisissez les coordonn%ces et la direction de votre destroyer n%c%d sur %d (longueur: %d)\n", 130, 167, i+1, NB_DESTROYER, SIZE_DESTROYER);
+            scanf("%d,%d,%d,%d", &row, &col, &direction);
+            bool = can_place_ship(board, row, col, SIZE_DESTROYER, direction);
+
+            if (bool)
+            {
+                place_ship(board, row, col, SIZE_DESTROYER, direction);
+                print_board(board);
+            }
+        } while (bool==0);
+    }
+
+    for (i = 0; i < NB_TORPILLEUR; ++i)
+    {
+        do
+        {
+            bool = 0;
+            printf("Saisissez les coordonn%ces et la direction de votre torpilleur n%c%d sur %d (longueur: %d)\n", 130, 167, i+1, NB_TORPILLEUR, SIZE_TORPILLEUR);
+            scanf("%d,%d,%d,%d", &row, &col, &direction);
+            bool = can_place_ship(board, row, col, SIZE_TORPILLEUR, direction);
+
+            if (bool)
+            {
+                place_ship(board, row, col, SIZE_TORPILLEUR, direction);
+                print_board(board);
+            }
+        } while (bool==0);
+    }
+
+    return 1;
+}
+
+int place_ships_randomly(Board * board)
 {
     int i;
     int attempts = 0;

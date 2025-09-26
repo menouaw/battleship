@@ -34,6 +34,7 @@ Position get_player_input(void)
             printf("Coordonn%ces hors limites. Valeur minimale: 0, valeur maximale: %d.\n", 130, size);
         } else
         {
+            printf("\n");
             bool = 1;
         }
 
@@ -52,4 +53,17 @@ void print_player_interface(Player * player)
     print_board(&player->board);
     printf("Le plateau de votre adversaire: \n");
     print_board(&player->own_opponent_board);
+}
+
+void clear_screen()
+{
+    // system("clear");
+    system("cls");
+}
+
+void wait_for_next_player()
+{
+    printf("Appuyez sur la touche 'Entr%ce pour passer au joueur suivant.\n", 130);
+    getchar();
+    clear_screen();
 }

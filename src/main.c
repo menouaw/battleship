@@ -25,10 +25,8 @@ int main(int argc, char * argv[])
     printf("2. Manuellement.\n");
     printf("\n");
 
-    // scanf("%d", &choice);
-    choice=1; // pour faciliter le dev
-
-    // scanf("%d %d %d %d", &row, &col, &size, &direction);
+    scanf("%d", &choice);
+    // choice=1; // pour faciliter le dev
 
     Player * p1 = malloc(sizeof(Player));
     p1->id=0;
@@ -56,12 +54,12 @@ int main(int argc, char * argv[])
         printf("Victoire du joueur: %d\n", winner);
         break;
     case 2:
-        // TODO: cas d'ajout de navires manuellement
+        place_ships_manually(&(p1->board));
+        winner = launch_game(p1, p2);
+        printf("Victoire du joueur: %d\n", winner);
     default:
         printf("Saisie incorrecte.");
     }
-
-    print_board(&(p1->board));
 
     free_board(&(p1->board));
     free_board(&(p1->own_opponent_board));

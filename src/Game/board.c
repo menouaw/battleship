@@ -32,7 +32,7 @@ void print_board(const Board * board)
     {
         if (i==0)
         {
-            printf("%3c ", 'X');
+            printf("%3c ", '\\');
         }
 
         printf("%3c ", 65+i);
@@ -45,7 +45,7 @@ void print_board(const Board * board)
 
     for (i=0; i < board->size; ++i)
     {
-        printf("%3d ", i+1);
+        printf("%3d ", i);
 
         for (j=0; j < board->size; ++j)
         {

@@ -54,6 +54,7 @@ int launch_game(Player * p1, Player * p2)
     {
         if (turn%2==0) // tour du joueur 1
         {
+            wait_for_next_player();
             do
             {
                 bool_hit = 0;
@@ -69,6 +70,7 @@ int launch_game(Player * p1, Player * p2)
 
         } else // tour du joueur 2
         {
+            wait_for_next_player();
             do
             {
                 bool_hit = 0;
