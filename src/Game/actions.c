@@ -10,7 +10,13 @@
 int attack(Position position, Player * opponent, Board * own_opponent_board)
 {
     int res;
-    if (opponent->board.board[position.row][position.col]=='.')
+
+    if (own_opponent_board->board[position.row][position.col]=='O' ||
+        own_opponent_board->board[position.row][position.col]=='X') // position déjà tirée
+    {
+        printf("Position: %d, %d d%cj%c tir%ce!\n", position.row, position.col, 130, 133, 130);
+        res = 1;
+    } else if (opponent->board.board[position.row][position.col]=='.')
     {
         own_opponent_board->board[position.row][position.col]='O';
         printf("Position: %d, %d: %c l'eau!\n", position.row, position.col, 133);
