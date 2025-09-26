@@ -17,6 +17,7 @@ int main(int argc, char * argv[])
         NB_DESTROYER*SIZE_DESTROYER+
         NB_TORPILLEUR*SIZE_TORPILLEUR);
     int choice;
+    int winner;
     int row, col, size, direction;
 
     printf("Souhaitez-vous placer vos bateaux manuellement ou automatiquement?\n");
@@ -49,8 +50,8 @@ int main(int argc, char * argv[])
     case 1:
         place_ships_randomly(&(p1->board));
         place_ships_randomly(&(p2->board));
-        // TODO: launch_game();
-        launch_game(p1, p2);
+        winner = launch_game(p1, p2);
+        printf("Victoire du joueur: %d", winner);
         break;
     case 2:
         // TODO: cas d'ajout de navires manuellement

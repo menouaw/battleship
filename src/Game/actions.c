@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 #include "../../include/Game/board.h"
+#include "../../include/Game/checks.h"
 
 Position get_player_input(void)
 {
@@ -27,7 +28,7 @@ Position get_player_input(void)
             bool = 1;
         }
 
-    } while (bool != 0);
+    } while (bool == 0);
 
     pos.row = row;
     pos.col = col;
@@ -35,8 +36,26 @@ Position get_player_input(void)
     return pos;
 }
 
-void attack(Board * opponentBoard, Position position)
+int attack(Position position, Player * opponent, Board * own_opponent_board)
 {
+    int res;
+    if (opponent->board.board[position.row][position.col]=='.')
+    {
+        own_opponent_board->board[position.row][position.col]='O';
+        printf("Position: %d, %d: à l'eau!\n", position.row, position.col);
+        res = -1;
+    } else if (opponent->board.board[position.row][position.col]!='.') // soit un bateau
+    {
+        own_opponent_board->board[position.row][position.col]='X';
+        opponent->board.board[position.row][position.col]='X';
+        printf("Position: %d, %d: touché!\n", position.row, position.col);
+        opponent->lefts-=1;
+        res = 1;
+    } else
+    {
+        res = 0;
+    }
+    return res;
 }
 
 int launch_game(Player * p1, Player * p2)
@@ -57,16 +76,33 @@ int launch_game(Player * p1, Player * p2)
     {
         if (turn%2) // tour du joueur 1
         {
-            printf("Tour du joueur 1\n");
-            pos = get_player_input();
-
+            do
+            {
+                printf("Tour du joueur 1\n");
+                pos = get_player_input();
+                if (victory(p2)==0)
+                {
+                    winner=1;
+                    break;
+                }
+            } while (attack(pos, p2, &p1->own_opponent_board));
 
         } else // tour du joueur 2
         {
-
+            do
+            {
+                printf("Tour du joueur 2\n");
+                pos = get_player_input();
+                if (victory(p1)==0)
+                {
+                    winner=2;
+                    break;
+                }
+            } while (attack(pos, p1, &p2->own_opponent_board));
         }
         ++turn;
     }
+    return winner;
 }
 
 

@@ -8,7 +8,7 @@
 
 Position get_player_input(void);
 
-void attack(Board * opponent_board, Position position);
+int attack(Position position, Player * opponent, Board * own_opponent_board);
 
 int launch_game(Player * p1, Player * p2);
 
