@@ -1,0 +1,8 @@
+//
+// Created by menou on 26/09/2025.
+//
+
+#ifndef BATTLESHIP_INTERFACE_H
+#define BATTLESHIP_INTERFACE_H
+
+#endif //BATTLESHIP_INTERFACE_H
