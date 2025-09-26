@@ -18,11 +18,11 @@ int main(int argc, char * argv[])
         NB_TORPILLEUR*SIZE_TORPILLEUR);
     int choice;
     int winner;
-    int row, col, size, direction;
 
     printf("Souhaitez-vous placer vos bateaux manuellement ou automatiquement?\n");
     printf("1. Automatiquement.\n");
     printf("2. Manuellement.\n");
+    printf("3. Quitter.\n");
     printf("\n");
 
     scanf("%d", &choice);
@@ -58,6 +58,9 @@ int main(int argc, char * argv[])
         place_ships_manually(&(p2->board));
         winner = launch_game(p1, p2);
         printf("Victoire du joueur: %d\n", winner);
+        break;
+    case 3:
+        printf("Bye!\n");
         break;
     default:
         printf("Saisie incorrecte.");
