@@ -5,12 +5,12 @@
 #include "../include/Game/board.h"
 #include "../include/Game/ship.h"
 #include "../include/DataStructures/bases.h"
+#include "../include/Game/actions.h"
 
-#define BOARD_SIZE 5;
 
 int main(int argc, char * argv[])
 {
-    srand((unsigned int)time(NULL));
+    srand(time(NULL));
 
     int lives = (NB_PORTE_AVIONS*SIZE_PORTE_AVIONS+
         NB_CROISEUR*SIZE_CROISEUR+
@@ -50,6 +50,7 @@ int main(int argc, char * argv[])
         place_ships_randomly(&(p1->board));
         place_ships_randomly(&(p2->board));
         // TODO: launch_game();
+        launch_game(p1, p2);
         break;
     case 2:
         // TODO: cas d'ajout de navires manuellement

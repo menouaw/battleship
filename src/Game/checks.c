@@ -6,19 +6,20 @@
 
 #include <stdio.h>
 
-int hit_or_miss(Position position, Board * opponent_board, Board * own_opponent_board)
+int hit_or_miss(Position position, Player * opponent, Board * own_opponent_board)
 {
     int res;
-    if (opponent_board->board[position.row][position.col]=='.')
+    if (opponent->board.board[position.row][position.col]=='.')
     {
         own_opponent_board->board[position.row][position.col]='O';
-        printf("Position: %d, %d: à l'eau!\n", position.row, position.row);
+        printf("Position: %d, %d: à l'eau!\n", position.row, position.col);
         res = -1;
-    } else if (opponent_board->board[position.row][position.col]!='.') // soit un bateau
+    } else if (opponent->board.board[position.row][position.col]!='.') // soit un bateau
     {
         own_opponent_board->board[position.row][position.col]='X';
-        opponent_board->board[position.row][position.col]='X';
-        printf("Position: %d, %d: touché!\n", position.row, position.row);
+        opponent->board.board[position.row][position.col]='X';
+        printf("Position: %d, %d: touché!\n", position.row, position.col);
+        opponent->lefts-=1;
         res = 1;
     } else
     {
@@ -27,15 +28,12 @@ int hit_or_miss(Position position, Board * opponent_board, Board * own_opponent_
     return res;
 }
 
-int victory(Board * board)
+int victory(Player * opponent)
 {
     int bool = 0;
-    int size = board->size;
-    for (int i = 0; i < size; ++i)
+    if (opponent->lefts==0)
     {
-        for (int j = 0; j < size; ++j)
-        {
-            if (board[i][j]
-        }
+        bool = 1;
     }
+    return bool;
 }

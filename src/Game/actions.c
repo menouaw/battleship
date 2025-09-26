@@ -5,13 +5,13 @@
 
 #include "../../include/Game/board.h"
 
-Position get_player_input(Player * player)
+Position get_player_input(void)
 {
     Position pos;
     int row;
     int col;
     int bool = 0;
-    int size = player->board.size;
+    int size = BOARD_SIZE;
 
     do
     {
@@ -35,7 +35,39 @@ Position get_player_input(Player * player)
     return pos;
 }
 
-void attack(Board * opponentBoard, Position position) {}
+void attack(Board * opponentBoard, Position position)
+{
+}
+
+int launch_game(Player * p1, Player * p2)
+{
+    /*
+     * 1. afficher
+     * 2. obtenir l'attaque
+     * 3. traiter l'attaque
+     * 4. vérifier victoire
+     * 5. changement de joueur
+     */
+
+    int winner = -1;
+    int turn = 0;
+    Position pos;
+
+    while (winner==-1)
+    {
+        if (turn%2) // tour du joueur 1
+        {
+            printf("Tour du joueur 1\n");
+            pos = get_player_input();
+
+
+        } else // tour du joueur 2
+        {
+
+        }
+        ++turn;
+    }
+}
 
 
 #include "../../include/Game/actions.h"

@@ -134,13 +134,15 @@ void place_ship(Board* board, int row, int col, int size, int direction)
 int place_ships_randomly(Board* board)
 {
     int i;
+    int attempts = 0;
     int row, col, direction;
 
-    for (i=0; i < NB_PORTE_AVIONS;)
+    for (i=0; i < NB_PORTE_AVIONS || attempts > 1000;)
     {
         row = rand() % board->size;
         col = rand() % board->size;
         direction = rand() % 4;
+        ++attempts;
 
         if (can_place_ship(board, row, col, SIZE_PORTE_AVIONS, direction))
         {
@@ -149,11 +151,12 @@ int place_ships_randomly(Board* board)
         }
     }
 
-    for (i=0; i < NB_CROISEUR;)
+    for (i=0; i < NB_CROISEUR || attempts > 1000;)
     {
         row = rand() % board->size;
         col = rand() % board->size;
         direction = rand() % 4;
+        ++attempts;
 
         if (can_place_ship(board, row, col, SIZE_CROISEUR, direction))
         {
@@ -162,11 +165,12 @@ int place_ships_randomly(Board* board)
         }
     }
 
-    for (i=0; i < NB_DESTROYER;)
+    for (i=0; i < NB_DESTROYER || attempts > 1000;)
     {
         row = rand() % board->size;
         col = rand() % board->size;
         direction = rand() % 4;
+        ++attempts;
 
         if (can_place_ship(board, row, col, SIZE_DESTROYER, direction))
         {
@@ -175,11 +179,12 @@ int place_ships_randomly(Board* board)
         }
     }
 
-    for (i=0; i < NB_TORPILLEUR;)
+    for (i=0; i < NB_TORPILLEUR || attempts > 1000;)
     {
         row = rand() % board->size;
         col = rand() % board->size;
         direction = rand() % 4;
+        ++attempts;
 
         if (can_place_ship(board, row, col, SIZE_TORPILLEUR, direction))
         {
