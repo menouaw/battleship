@@ -47,7 +47,7 @@ Position get_player_input(void)
 
 void print_player_interface(Player * player)
 {
-    printf("=== Au tour du joueur %d \\n", (player->id)+1);
+    printf("=== Au tour du joueur %d ===\n", (player->id)+1);
     printf("Votre plateau: \n");
     print_board(&player->board);
     printf("Le plateau de votre adversaire: \n");
