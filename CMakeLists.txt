@@ -13,4 +13,6 @@ add_executable(battleship src/main.c
         src/Game/actions.c
         include/Game/actions.h
         src/Game/checks.c
-        include/Game/checks.h)
+        include/Game/checks.h
+        src/Game/interface.c
+        include/Game/interface.h)

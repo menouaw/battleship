@@ -3,7 +3,7 @@
 //
 #include "../DataStructures/bases.h"
 
-#define BOARD_SIZE 5;
+#define BOARD_SIZE 5
 
 #ifndef BATTLESHIP_MAP_H
 #define BATTLESHIP_MAP_H

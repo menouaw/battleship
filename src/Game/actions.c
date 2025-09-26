@@ -3,38 +3,9 @@
 //
 #include <stdio.h>
 
-#include "../../include/Game/board.h"
+#include "../../include/Game/actions.h"
 #include "../../include/Game/checks.h"
-
-Position get_player_input(void)
-{
-    Position pos;
-    int row;
-    int col;
-    int bool = 0;
-    int size = BOARD_SIZE;
-
-    do
-    {
-        printf("Où souhaitez-vous tirer? Format: X,Y.\n");
-        scanf("%d,%d", &row, &col);
-
-        if ((row<0||row>size-1)||
-            (col<0||col>size-1))
-        {
-            continue;
-        } else
-        {
-            bool = 1;
-        }
-
-    } while (bool == 0);
-
-    pos.row = row;
-    pos.col = col;
-
-    return pos;
-}
+#include "../../include/Game/interface.h"
 
 int attack(Position position, Player * opponent, Board * own_opponent_board)
 {
@@ -42,13 +13,13 @@ int attack(Position position, Player * opponent, Board * own_opponent_board)
     if (opponent->board.board[position.row][position.col]=='.')
     {
         own_opponent_board->board[position.row][position.col]='O';
-        printf("Position: %d, %d: à l'eau!\n", position.row, position.col);
+        printf("Position: %d, %d: %c l'eau!\n", position.row, position.col, 133);
         res = -1;
     } else if (opponent->board.board[position.row][position.col]!='.') // soit un bateau
     {
         own_opponent_board->board[position.row][position.col]='X';
         opponent->board.board[position.row][position.col]='X';
-        printf("Position: %d, %d: touché!\n", position.row, position.col);
+        printf("Position: %d, %d: touch%c!\n", position.row, position.col, 130);
         opponent->lefts-=1;
         res = 1;
     } else
@@ -78,7 +49,7 @@ int launch_game(Player * p1, Player * p2)
         {
             do
             {
-                printf("Tour du joueur 1\n");
+                // TODO: afficher l'interface du joueur en début de tour
                 pos = get_player_input();
                 if (victory(p2)==0)
                 {
@@ -91,7 +62,6 @@ int launch_game(Player * p1, Player * p2)
         {
             do
             {
-                printf("Tour du joueur 2\n");
                 pos = get_player_input();
                 if (victory(p1)==0)
                 {
@@ -104,6 +74,3 @@ int launch_game(Player * p1, Player * p2)
     }
     return winner;
 }
-
-
-#include "../../include/Game/actions.h"

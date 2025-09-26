@@ -34,11 +34,13 @@ int main(int argc, char * argv[])
     p1->id=0;
     p1->lefts=lives;
     p1->board.size = BOARD_SIZE;
+    p1->own_opponent_board.size = BOARD_SIZE;
 
     Player * p2 = malloc(sizeof(Player));
     p2->id=1;
     p2->lefts=lives;
     p2->board.size = BOARD_SIZE;
+    p2->own_opponent_board.size = BOARD_SIZE;
 
     allocate_board(&(p1->board));
     allocate_board(&(p1->own_opponent_board));
@@ -51,7 +53,7 @@ int main(int argc, char * argv[])
         place_ships_randomly(&(p1->board));
         place_ships_randomly(&(p2->board));
         winner = launch_game(p1, p2);
-        printf("Victoire du joueur: %d", winner);
+        printf("Victoire du joueur: %d\n", winner);
         break;
     case 2:
         // TODO: cas d'ajout de navires manuellement
